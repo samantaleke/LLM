@@ -71,3 +71,28 @@ from transformers import pipeline
 unmasker = pipeline("fill-mask", model="bert-base-multilingual-cased")
 unmasker("Vamos aprender sobre [MASK] nesse capitulo", top_k=2)
 
+from transformers import pipeline
+
+ner = pipeline("ner", grouped_entities=True)
+ner("My name is Samanta and I work as a Data Scientist in the city of São Paulo.")
+
+from transformers import pipeline
+
+question_answerer = pipeline("question-answering")
+question_answerer(
+    question="Where do I work?",
+    context="My name is Samanta and I work as a Data Scientist in the city of São Paulo.",
+)
+
+from transformers import pipeline
+
+summarizer = pipeline("summarization")
+summarizer(
+    """
+    The history of São Paulo, both the state and the capital, is rich and complex, marked by different phases and influences. The founding of the city in 1554 by the Jesuit college in Pátio do Colégio is an initial milestone, followed by economic and political development that transformed it into an important regional and national center.
+The Foundation and the Colonial Period:
+The founding of São Paulo on January 25, 1554, by the Jesuits Manuel da Nóbrega and José de Anchieta, aimed to evangelize the indigenous populations.
+The city developed as an important meeting point between Portuguese and indigenous settlers, establishing a trade in indigenous products and labor.
+The gradual occupation of the territory, with the creation of other cities and production centers, boosted the economic and political growth of São Paulo.
+"""
+)
